@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+
+const app = require('../app');
+const port = Number.parseInt(process.env.PORT, 10) || 8080
+const db = require('../db/models')
+db.sequelize.authenticate()
+    .then(() => {
+        app.listen(port, () => console.log(`App now listening from bin/www on port: ${port}...`))
+    })
+    .catch((error) => {
+        console.log('Unable to connect to the database.)
+        console.error(error)
+    });
