@@ -11,6 +11,12 @@ module.exports = (sequelize, DataTypes) => {
     shuttleDriver: DataTypes.BOOLEAN
   }, {});
   Attendee.associate = function(models) {
+    const columnMapping = {
+      through: "Roster",
+      foreignKey: "attendeeId",
+      otherKey: "tripId"
+    }
+    Attendee.belongsTo(models.Trip, columnMapping);
     Attendee.belongsTo(models.User, { foreignKey: 'userId' });
     Attendee.belongsTo(models.Craft, { foreignKey: 'craftId' });
     Attendee.belongsTo(models.Vehicle, { foreignKey: 'vehicleId' });

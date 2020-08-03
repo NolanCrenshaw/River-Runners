@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING(50),
       allowNull: false,
+      unique: true,
     },
     possiblePutIn: DataTypes.BOOLEAN,
     possibleTakeOut: DataTypes.BOOLEAN

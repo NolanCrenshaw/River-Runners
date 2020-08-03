@@ -15,8 +15,14 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   Trip.associate = function(models) {
+    const columnMapping = {
+      through: "Roster",
+      foreignKey: "tripId",
+      otherKey: "attendeeId"
+    }
     Trip.belongsTo(models.River, { foreignKey: 'riverId' });
     Trip.belongsTo(models.User, {foreignKey: 'tripLeaderId' });
+    Trip.hasMany(models.Attendee, columnMapping);
     Trip.hasMany(models.Roster, { foreignKey: 'tripId' });
   };
   return Trip;
