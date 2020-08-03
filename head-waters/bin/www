@@ -8,6 +8,6 @@ db.sequelize.authenticate()
         app.listen(port, () => console.log(`App now listening from bin/www on port: ${port}...`))
     })
     .catch((error) => {
-        console.log('Unable to connect to the database.)
+        console.log('Unable to connect to the database.')
         console.error(error)
     });
