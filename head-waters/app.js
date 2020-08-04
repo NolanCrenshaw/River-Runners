@@ -7,7 +7,8 @@ const helmet = require('helmet');
 const bodyParser = require('body-parser');
 
 // Internal Modules
-const { port } = require('./config/index');
+// const { port } = require('./config/index');
+const routes = require('./routes')
 
 // Declarations
 const app = express();
@@ -20,9 +21,21 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '/public')));
 
-// Routes
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+app.use(routes);
+
+app.use(function(req, _res, next) {
+    next(createError(404));
 });
 
-app.listen(port, () => console.log(`Listening on port: ${port}`));
+app.use(function(err, _req, res, _next) {
+    res.status(err.status || 500);
+    if (err.status === 401) {
+        res.set('WWW-Authenticate', 'Bearer');
+    }
+    res.json({
+        message: err.message,
+        error: JSON.parse(JSON.stringify(err)),
+    });
+});
+
+module.exports = app;

@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     }
     Trip.belongsTo(models.River, { foreignKey: 'riverId' });
     Trip.belongsTo(models.User, {foreignKey: 'tripLeaderId' });
-    Trip.hasMany(models.Attendee, columnMapping);
+    Trip.belongsToMany(models.Attendee, columnMapping);
     Trip.hasMany(models.Roster, { foreignKey: 'tripId' });
   };
   return Trip;
