@@ -5,6 +5,7 @@ const { check, validationResult } = require('express-validator');
 
 // Internal Modules
 const UserRepository  = require('../../db/userRepository');
+const { User } = require('../../db/models');
 const { requireAuth } = require('./utils');
 
 // Declarations
@@ -30,14 +31,10 @@ const password =
     .not().isEmpty()
     .withMessage('Please provide a password');
 
+// --- ROUTES ---
 // Populates all users - TODO ***
 router.get(
     '/',
-);
-
-// Meant to render Signup Form = IS THIS NEEDED? 
-router.get(
-    '/signup',
 );
 
 // Submits Sign Up Form
@@ -86,4 +83,11 @@ router.patch(
 // Destroys a single user - TODO ***
 router.delete(
     '/:id(\\d+)',
+    asyncHandler(async (req, res) => {
+        const user = User.findByPk(req.params.id);
+        await user.destroy();
+        
+    })
 )
+
+module.exports = router;
