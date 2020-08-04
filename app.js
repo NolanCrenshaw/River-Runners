@@ -7,7 +7,6 @@ const helmet = require('helmet');
 const bodyParser = require('body-parser');
 
 // Internal Modules
-// const { port } = require('./config/index');
 const routes = require('./routes')
 
 // Declarations
@@ -22,6 +21,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.use(routes);
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'));
+    app.get('/', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+}
 
 app.use(function(req, _res, next) {
     next(createError(404));
