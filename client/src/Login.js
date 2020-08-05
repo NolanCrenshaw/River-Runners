@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { actions } from './store/authentication';
+import { actions, thunks } from './store/authentication';
 
 const Login = props => 
-    <form>
+    <form onSubmit={props.tryLogin}>
         <div>
             <input
                 onChange={props.updateEmailValue}
@@ -16,6 +16,7 @@ const Login = props =>
         <div>
             <input
                 onChange={props.updatePasswordValue}
+                value={props.password}
                 type="password" 
                 placeholder="Password" 
                 required 
@@ -37,6 +38,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         updateEmailValue: event => dispatch(actions.updateEmailValue(event.target.value)),
+        updatePasswordValue: event => dispatch(actions.updatePasswordValue(event.target.value)),
+        tryLogin: () => dispatch(thunks.tryLogin()),
     };
 };
 
