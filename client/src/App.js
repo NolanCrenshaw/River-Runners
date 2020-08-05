@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 
+import Login from './Login';
+
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
@@ -20,7 +22,12 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 
 function App() {
   return (
-    <h1>Hello World!</h1>
+    <div>
+      <h1>Hello World!</h1>
+      <div>
+        <Login />
+      </div>
+    </div>
   );
 }
 
