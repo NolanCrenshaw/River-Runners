@@ -4,40 +4,67 @@ const TOKEN_KEY = 'riverRunners/authentication/token';
 const SET_TOKEN = 'riverRunners/authentication/SET_TOKEN';
 const REMOVE_TOKEN = 'riverRunners/authentication/REMOVE_TOKEN';
 
-export const removeToken = () => ({ type: REMOVE_TOKEN });
-export const setToken = token => ({ type: SET_TOKEN, token });
+const updateEmailValue = value => ({ type: UPDATE_EMAIL_VALUE, value });
+const updatePasswordValue = value => ({ type: UPDATE_PASSWORD_VALUE, value });
+const setToken = token => ({ type: SET_TOKEN, token });
+const removeToken = () => ({ type: REMOVE_TOKEN });
 
-export const loadToken = () => async dispatch => {
+const loadToken = () => async dispatch => {
     const token = window.localStorage.getItem(TOKEN_KEY);
     if (token) {
         dispatch(setToken(token));
     }
 };
 
-export const login = (email, password) => async dispatch => {
-    const response = await fetch(`${baseUrl}/session`, {
-        method: 'put',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-    });
-    if (response.ok) {
-        const { token } = await response.json();
-        window.localStorage.setItem(TOKEN_KEY, token);
-        dispatch(setToken(token));
-    }
+const tryLogin = () => {
+    return async (dispatch, getState) => {
+        const { authentication: { email, password } } = getState();
+        const response = await fetch(`${baseUrl}/session`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password }),
+        });
+        try {
+            if (response.status >= 200 && response.status < 400) {
+                // needing to find way to set user to state
+                const { token, user } = await response.json();
+                window.localStorage.setItem(TOKEN_KEY, token);
+                dispatch(setToken(token));
+            } else {
+                console.error('Bad Response');
+            }
+        } catch (e) {
+            console.error(e);
+        }
+    };
 };
 
-export const logout = () => async (dispatch, getState) => {
+const logout = () => async (dispatch, getState) => {
     const { authentication: { token } } = getState();
     const response = await fetch(`${baseUrl}/session`, {
-        method: 'delete',
+        method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
     });
     if (response.ok) {
         window.localStorage.removeItem(TOKEN_KEY);
         dispatch(removeToken());
+    } else {
+        console.error("Bad Response");
     }
 };
+
+export const actions = {
+    updateEmailValue,
+    updatePasswordValue,
+    setToken,
+    removeToken,
+}
+
+export const thunks = {
+    loadToken,
+    tryLogin,
+    logout,
+}
 
 export default function reducer(state = {}, action) {
     switch (action.type) {
