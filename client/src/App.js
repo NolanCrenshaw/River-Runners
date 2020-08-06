@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 
 import Login from './Login';
+import SignUpFormContainer from './containers/SignUpFormContainer';
 import { actions, thunks } from './store/authentication';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -35,6 +36,7 @@ class App extends React.Component {
             <BrowserRouter>
                 <Switch>
                     <Route path='/login' component={Login} />
+                    <Route path='/signup' component={SignUpFormContainer} />
                     <PrivateRoute 
                         path='/' 
                         exact={true}

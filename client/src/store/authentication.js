@@ -1,14 +1,6 @@
 import { baseUrl } from '../config';
+import { TOKEN_KEY, SET_TOKEN, REMOVE_TOKEN } from '../constants'
 
-// *** Marked for cleanup ***
-// const UPDATE_EMAIL_VALUE = 'riverRunners/authentication/UPDATE_EMAIL_VALUE';
-// const UPDATE_PASSWORD_VALUE = 'riverRunners/authenication/UPDATE_PASSWORD_VALUE';
-const TOKEN_KEY = 'riverRunners/authentication/token';
-const SET_TOKEN = 'riverRunners/authentication/SET_TOKEN';
-const REMOVE_TOKEN = 'riverRunners/authentication/REMOVE_TOKEN';
-
-const updateEmailValue = value => ({ type: UPDATE_EMAIL_VALUE, value });
-const updatePasswordValue = value => ({ type: UPDATE_PASSWORD_VALUE, value });
 const setToken = token => ({ type: SET_TOKEN, token });
 const removeToken = () => ({ type: REMOVE_TOKEN });
 
@@ -52,8 +44,6 @@ export const logout = () => async (dispatch, getState) => {
 };
 
 export const actions = {
-    updateEmailValue,
-    updatePasswordValue,
     setToken,
     removeToken,
 }
@@ -64,18 +54,6 @@ export const thunks = {
 
 export default function reducer(state = {}, action) {
     switch (action.type) {
-        case UPDATE_EMAIL_VALUE: {
-            return {
-                ...state,
-                email: action.value,
-            }
-        }
-        case UPDATE_PASSWORD_VALUE: {
-            return {
-                ...state,
-                password: action.value,
-            }
-        }
         case SET_TOKEN: {
             return {
                 ...state,

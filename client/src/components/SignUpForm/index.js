@@ -1,9 +1,11 @@
+// --- SignUpForm
+
 import React from 'react';
 import './styles.css';
 import { reduxForm } from 'redux-form';
 
 const SignUpForm = ({ 
-    addUser, 
+    createUser, 
     fields: {
         userName,
         email,
@@ -16,63 +18,60 @@ const SignUpForm = ({
     },
     handleSubmit }) => (
         <form 
-            onSubmit={handleSubmit(addUser)}
+            onSubmit={handleSubmit(createUser)}
         >
             <div>
                 <input
                     type="text"
                     placeholder="User Name"
-                    value={props.userName}
-                    onChange={updateUserName}
                     required
+                    {...userName}
                 />
             </div>
             <div>
                 <input
                     type="email"
                     placeholder="Email Address"
-                    value={props.email}
-                    onChange={updateEmail}
                     required
+                    {...email}
                 />
             </div>
             <div>
                 <input
                     type="password"
                     placeholder="Password"
-                    value={props.password}
-                    onChange={updatePassword}
                     required
+                    {...password}
                 />
             </div>
             <div>
                 <input 
                     type="text"
                     placeholder="First Name"
-                    value={props.firstName}
-                    onChange={updateFirstName}
                     required
+                    {...firstName}
                 />
             </div>
             <div>
                 <input
                     type="text"
                     placeholder="Last Name"
-                    value={props.lastName}
-                    onChange={updateLastName}
+                    {...lastName}
                 />
             </div>
             <div>
                 <input
                     type="integer"
                     placeholder="Zip Code"
-                    value={props.zipCode}
-                    onChange={updateZipCode}
                     required
+                    {...zipCode}
                 />
             </div>
             <div>
-                <select name="skillSelect" onChange={updateSkillLevel}>
+                <select 
+                    name="skillSelect" 
+                    {...skillLevel}
+                >
                     <option value={2}>Class 1-2</option>
                     <option value={3}>Class 3</option>
                     <option value={4}>Class 4</option>
@@ -82,8 +81,7 @@ const SignUpForm = ({
             <div>
                 <textarea
                     placeholder="Write About Yourself"
-                    value={props.about}
-                    onChange={updateAbout}
+                    {...about}
                 />
             </div>
             <div>
