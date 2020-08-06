@@ -1,34 +1,62 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 
 import Login from './Login';
+import { actions, thunks } from './store/authentication';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={(props) => (
-      rest.needLongin === true ? <Redirect to='/login' /> : <Component {...props} />)}
+      rest.needLogin === true ? <Redirect to='/login' /> : <Component {...props} />)}
   />
 );
 
-// class App extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = 
-//   }
-// }
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            loaded: false
+        };
+    }
+    
+    async componentDidMount() {
+        this.setState({ loaded: true });
+        this.props.loadToken();
+    }
+    
+    render() {
+        if (!this.state.loaded) {
+            return null;
+        }
 
+        return (
+            <BrowserRouter>
+                <Switch>
+                    <Route path='/login' component={Login} />
+                    <PrivateRoute 
+                        path='/' 
+                        exact={true}
+                        needLogin={this.props.needLogin} 
+                        // component={UserHome} 
+                    />
+                </Switch>
+            </BrowserRouter>
+        )
+    }
+};
 
-function App() {
-  return (
-    <div>
-      <h1>Hello World!</h1>
-      <div>
-        <Login />
-      </div>
-    </div>
-  );
+const mapStateToProps = state => {
+    return {
+        needLogin: !state.authentication.token
+    };
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+    return {
+        loadToken: () => dispatch(thunks.loadToken())
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

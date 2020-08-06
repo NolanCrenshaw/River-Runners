@@ -28,6 +28,7 @@ router.put(
     '/',
     [email, password],
     asyncHandler(async (req, res, next) => {
+        console.log("GOT TO BACKEND");
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return next({ status: 422, errors: errors.array() });
@@ -39,6 +40,7 @@ router.put(
             err.status = 401;
             err.title = 'Login failed';
             err.errors = ['Invalid credentials'];
+            console.log(err);
             return next(err);
         }
         const { jti, token } = getUserToken(user);

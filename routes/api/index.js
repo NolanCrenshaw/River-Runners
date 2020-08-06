@@ -6,6 +6,7 @@ const routes = [
   'trips',
   'crafts',
   'vehicles',
+  'session',
 ];
 
 for (let route of routes) {
