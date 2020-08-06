@@ -2,17 +2,18 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check, validationResult } = require('express-validator');
+const cors = require('cors');
 
 // Internal Modules
 const UserRepository  = require('../../db/userRepository');
 const { User } = require('../../db/models');
-const { requireAuth } = require('./utils');
+const { requireAuth, getUserToken } = require('./utils');
 
 // Declarations
 const router = express.Router();
 
 // Middleware
-router.use(requireAuth);
+router.use(cors({ origin: true }));
 
 // Validations
 const email =
@@ -49,16 +50,17 @@ router.post(
             return next({ status: 422, errors: errors.array() });
         }
         const user = await UserRepository.create(req.body);
-        const { jti, token } = generateToken(user);
+        const { jti, token } = getUserToken(user);
         user.tokenId = jti;
         await user.save();
-        res.json({ token, user: user.toSafeObject() });
+        res.json({ token, jti, user: user.toSafeObject() });
     })
 );
 
 // Populates a single user - TODO (add middleware) ***
 router.get(
     '/:id(\\d+)',
+    requireAuth,
     asyncHandler(async (req, res) => {
         const userId = parseInt(req.params.id, 10);
         const user = User.findOne({
@@ -83,6 +85,7 @@ router.patch(
 // Destroys a single user - TODO ***
 router.delete(
     '/:id(\\d+)',
+    requireAuth,
     asyncHandler(async (req, res) => {
         const user = User.findByPk(req.params.id);
         await user.destroy();

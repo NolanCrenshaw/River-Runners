@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import styles from './styles.css';
 import { Redirect } from 'react-router-dom';
-import { tryLogin } from './store/authentication';
 
-class LoginForm extends Component {
+
+export default class LoginForm extends Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -28,12 +28,14 @@ class LoginForm extends Component {
   
     render() {
         if (this.props.token) {
-            return <Redirect to="/" />;
+            return <Redirect to="/signup" />;
         }
         return (
             <div className="loginScreen">
                 <main className="centered middled">
-                    <form onSubmit={this.handleSubmit}>
+                    <form 
+                        className="loginScreen__form"
+                        onSubmit={this.handleSubmit}>
                         <input type="text"
                             placeholder="Email"
                             value={this.state.email}
@@ -49,29 +51,3 @@ class LoginForm extends Component {
       );
     }
 }
-  
-
-
-const mapStateToProps = state => ({})
-
-const mapDispatchToProps = dispatch => ({})
-  
-// const mapStateToProps = state => {
-//     return {
-//         token: state.authentication.token,
-//     };
-// };
-
-
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         tryLogin: (email, password) => dispatch(tryLogin(email, password))
-//     };
-// };
-  
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(
-    LoginForm  
-);

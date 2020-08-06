@@ -1,8 +1,8 @@
 import { baseUrl } from '../config';
 import { TOKEN_KEY, SET_TOKEN, REMOVE_TOKEN } from '../constants'
 
-const setToken = token => ({ type: SET_TOKEN, token });
-const removeToken = () => ({ type: REMOVE_TOKEN });
+export const setToken = token => ({ type: SET_TOKEN, token });
+export const removeToken = () => ({ type: REMOVE_TOKEN });
 
 export const loadToken = () => async dispatch => {
     const token = window.localStorage.getItem(TOKEN_KEY);
@@ -19,7 +19,7 @@ export const tryLogin = (email, password) => async dispatch => {
     });
     if (response.status >= 200 && response.status < 400) {
         // needing to find way to set user to state
-        const { token, user } = await response.json();
+        const { token, jti, user } = await response.json();
         window.localStorage.setItem(TOKEN_KEY, token);
         dispatch(setToken(token));
     } else if (response.status === 401) {
@@ -42,15 +42,6 @@ export const logout = () => async (dispatch, getState) => {
         console.error("Bad Response");
     }
 };
-
-export const actions = {
-    setToken,
-    removeToken,
-}
-
-export const thunks = {
-    loadToken,
-}
 
 export default function reducer(state = {}, action) {
     switch (action.type) {

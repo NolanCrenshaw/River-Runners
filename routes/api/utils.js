@@ -15,7 +15,7 @@ const getUserToken = (user) => {
     const token = jwt.sign(
         { data: userData },
         secret,
-        { expiresIn: Number.parseInt(expiresIn), jwtId }
+        { expiresIn: Number.parseInt(expiresIn) }
     );
     return { jti: jwtId, token };
 };

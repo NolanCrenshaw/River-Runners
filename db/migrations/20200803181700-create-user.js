@@ -47,7 +47,6 @@ module.exports = {
       },
       spriteId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
       },
       createdAt: {
         allowNull: false,

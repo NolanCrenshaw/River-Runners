@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 
-import Login from './Login';
+import LoginFormContainer from './containers/LoginFormContainer';
 import SignUpFormContainer from './containers/SignUpFormContainer';
-import { actions, thunks } from './store/authentication';
+import { loadToken } from './store/authentication';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -35,14 +35,14 @@ class App extends React.Component {
         return (
             <BrowserRouter>
                 <Switch>
-                    <Route path='/login' component={Login} />
+                    <Route path='/login' component={LoginFormContainer} />
                     <Route path='/signup' component={SignUpFormContainer} />
                     <PrivateRoute 
                         path='/' 
                         exact={true}
                         needLogin={this.props.needLogin} 
-                        // component={UserHome} 
-                    />
+                        component={LoginFormContainer} 
+                        />
                 </Switch>
             </BrowserRouter>
         )
@@ -57,7 +57,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        loadToken: () => dispatch(thunks.loadToken())
+        loadToken: () => dispatch(loadToken())
     };
 }
 

@@ -40,7 +40,6 @@ module.exports = (sequelize, DataTypes) => {
     profilePicture: DataTypes.STRING(255),
     spriteId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
     },
   }, {});
   
