@@ -1,7 +1,8 @@
 import { baseUrl } from '../config';
 
-const UPDATE_EMAIL_VALUE = 'riverRunners/authentication/UPDATE_EMAIL_VALUE';
-const UPDATE_PASSWORD_VALUE = 'riverRunners/authenication/UPDATE_PASSWORD_VALUE';
+// *** Marked for cleanup ***
+// const UPDATE_EMAIL_VALUE = 'riverRunners/authentication/UPDATE_EMAIL_VALUE';
+// const UPDATE_PASSWORD_VALUE = 'riverRunners/authenication/UPDATE_PASSWORD_VALUE';
 const TOKEN_KEY = 'riverRunners/authentication/token';
 const SET_TOKEN = 'riverRunners/authentication/SET_TOKEN';
 const REMOVE_TOKEN = 'riverRunners/authentication/REMOVE_TOKEN';
