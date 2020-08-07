@@ -11,6 +11,10 @@ const Home = () => {
             <Navbar />
             <div className="homeScreen">
                 <div className="homeScreen__mainContainer">
+                    <div className="tile is-ancestor">
+                        <div className=""></div>
+
+                    </div>
 
                 </div>
             </div>
