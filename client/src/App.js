@@ -33,18 +33,20 @@ class App extends React.Component {
         }
 
         return (
-            <BrowserRouter>
-                <Switch>
-                    <Route path='/login' component={LoginFormContainer} />
-                    <Route path='/signup' component={SignUpFormContainer} />
-                    <PrivateRoute 
-                        path='/' 
-                        exact={true}
-                        needLogin={this.props.needLogin} 
-                        component={LoginFormContainer} 
-                        />
-                </Switch>
-            </BrowserRouter>
+            <div className="deux">
+                <BrowserRouter >
+                    <Switch>
+                        <Route path='/login' component={LoginFormContainer} />
+                        <Route path='/signup' component={SignUpFormContainer} />
+                        <PrivateRoute 
+                            path='/' 
+                            exact={true}
+                            needLogin={this.props.needLogin} 
+                            component={LoginFormContainer} 
+                            />
+                    </Switch>
+                </BrowserRouter>
+            </div>
         )
     }
 };
