@@ -1,0 +1,32 @@
+.navbar__main {
+    background-color: #48cae4;
+}
+
+.navbar__main--logoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar__logo {
+    background-image: url('../../images/riverRunnersLogo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 80px;
+    width: 100px;
+}
+
+.navbar__logo--text {
+    font-family: 'Permanent Marker', cursive;
+    /* font-family: 'Roboto', sans-serif; */
+    color: #03045e;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.navbar__endContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 30px;
+}

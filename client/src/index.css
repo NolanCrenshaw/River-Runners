@@ -1,4 +1,6 @@
 @import "../node_modules/bulma/css/bulma.css";
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
 
 body {
     margin: 0;

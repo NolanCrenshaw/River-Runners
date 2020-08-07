@@ -4,6 +4,8 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 
 import LoginFormContainer from './containers/LoginFormContainer';
 import SignUpFormContainer from './containers/SignUpFormContainer';
+import Home from './components/Home';
+import Footer from './components/Footer';
 import { loadToken } from './store/authentication';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -33,8 +35,8 @@ class App extends React.Component {
         }
 
         return (
-            <div className="deux">
-                <BrowserRouter >
+            <>
+                <div className="deux">
                     <Switch>
                         <Route path='/login' component={LoginFormContainer} />
                         <Route path='/signup' component={SignUpFormContainer} />
@@ -42,11 +44,12 @@ class App extends React.Component {
                             path='/' 
                             exact={true}
                             needLogin={this.props.needLogin} 
-                            component={LoginFormContainer} 
+                            component={Home} 
                             />
                     </Switch>
-                </BrowserRouter>
-            </div>
+                    <Footer />
+                </div>
+            </>
         )
     }
 };

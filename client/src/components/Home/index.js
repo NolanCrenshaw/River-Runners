@@ -2,14 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './styles.css';
 
+import Navbar from '../Navbar';
+
 const Home = () => {
 
     return (
-        <div className="homeScreen">
-            <div className="homeScreen__mainContainer">
+        <>
+            <Navbar />
+            <div className="homeScreen">
+                <div className="homeScreen__mainContainer">
 
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 

@@ -5,11 +5,14 @@ import './styles.css';
 const Footer = () => {
 
     return (
-        <footer className="footer">
-            <div className="content has-text-centered">
-                
-            </div>
-        </footer>
+        <>
+            <footer className="footer footer__mainContainer">
+                <div className="content has-text-centered">
+                    <p>Footer Text</p>
+                    
+                </div>
+            </footer>
+        </>
     )
 }
 
