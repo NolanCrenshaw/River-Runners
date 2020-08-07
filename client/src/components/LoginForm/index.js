@@ -28,7 +28,7 @@ export default class LoginForm extends Component {
   
     render() {
         if (this.props.token) {
-            return <Redirect to="/auth" />;
+            return <Redirect to="/" />;
         }
         return (
             <div className="loginScreen">

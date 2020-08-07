@@ -3,9 +3,11 @@
 import React from 'react';
 import './styles.css';
 import { Field, reduxForm } from 'redux-form';
+import { Redirect } from 'react-router-dom';
 
 const SignUpForm = ({ 
-    createUser, 
+    createUser,
+    token, 
     fields: {
         userName,
         email,
@@ -17,7 +19,9 @@ const SignUpForm = ({
         about,
     },
     handleSubmit }) => {
-        console.log(handleSubmit);
+        if (token) {
+            return <Redirect to="/" />;
+        }
         return (
             <div className="signUpScreen">
                 <div className="container signUpScreen__mainContainer">
@@ -101,7 +105,7 @@ const SignUpForm = ({
                         <div className="signUpScreen__mainContainer--form-textContainer">
                             <textarea
                                 className="textarea has-fixed-size signUpScreen__mainContainer--form-textarea"
-                                placeholder="Write About Yourself"
+                                placeholder="..."
                                 {...about}
                             />
                         </div>

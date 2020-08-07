@@ -23,7 +23,6 @@ export const tryLogin = (email, password) => async dispatch => {
         window.localStorage.setItem(TOKEN_KEY, token);
         dispatch(setToken(token));
     } else if (response.status === 401) {
-        console.log("Invalid Credientials")
     } else {
         console.error('Bad Response', response.status);
     }

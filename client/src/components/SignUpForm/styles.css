@@ -52,7 +52,8 @@
 
 .signUpScreen__mainContainer--form-textarea {
     width: 400px;
-    margin-bottom: 20px;;
+    margin-bottom: 20px;
+    color: black;
 }
 
 .signUpScreen__mainContainer--form-buttonContainer {

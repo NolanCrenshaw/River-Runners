@@ -34,10 +34,8 @@ export const createUser = () => async (dispatch, getState) => {
         const { token } = res;
         window.localStorage.setItem(TOKEN_KEY, token);
         dispatch(setToken(token));
-        console.log("Successfully Created User");
         dispatch({ type: ADD_USER_SUCCESS });
     } else {
-        console.log("res failed!", response)
         dispatch({ type: ADD_USER_FAILURE })
     }
 } 
