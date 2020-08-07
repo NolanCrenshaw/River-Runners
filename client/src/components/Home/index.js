@@ -10,12 +10,17 @@ const Home = () => {
         <>
             <Navbar />
             <div className="homeScreen">
-                <div className="homeScreen__mainContainer">
-                    <div className="tile is-ancestor">
-                        <div className=""></div>
-
+                <div className="tile is-ancestor">
+                    <div className="tile is-vertical is-4">
+                        <div className="tile">
+                            <div className="tile is-parent is-vertical">
+                                <div className="tile is-child is-primary">
+                                    <p class="title">Hello World</p>
+                                    <p class="subtitle">Tile Check</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
                 </div>
             </div>
         </>
