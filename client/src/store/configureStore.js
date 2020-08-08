@@ -12,7 +12,7 @@ const reducer = combineReducers({
   form: formReducer
 });
 
-const configureStore = initialState => {
+const configureStore = (initialState) => {
   return createStore(
     reducer,
     initialState,

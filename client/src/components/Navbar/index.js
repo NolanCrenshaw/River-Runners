@@ -23,9 +23,9 @@ const Navbar = () => {
                 <div className="navbar-menu">
                     <div className="navbar-start">
                         <div className="navbar-item has-dropdown is-hoverable">
-                            <a className="navbar-link">
+                            {/* <Link className="navbar-link">
                                 Actions
-                            </a>
+                            </Link>
                             <div className="navbar-dropdown">
                                 <NavLink 
                                     to='/craft' 
@@ -37,7 +37,7 @@ const Navbar = () => {
                                     exact
                                     className="navbar-item"
                                 >Add a Vehicle</NavLink>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

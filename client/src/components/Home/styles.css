@@ -1,3 +1,73 @@
-.homeScreen {
-    height: 1000px;
+.home {
+    height: fit-contents;
+}
+
+.home__userContainer {
+    width: 500px;
+    height: 900px;
+    background-color: #ade8f4;
+    display: flex;
+    flex-direction: column;
+}
+
+.home__userCard {
+    height: fit-content;
+    background-color: burlywood;
+    margin: 0 60px;
+    margin-top: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    border-radius: 20px;
+}
+
+.home__userCard--top {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.home__userCard--profilePicture {
+    background-size: cover;
+    position: relative;
+    bottom: 30px;
+    height: 200px;
+    width: 200px;
+    border-radius: 180px;
+    border: solid 4px #03045e;
+}
+
+.home__userCard--top-inforContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home__userCard--userSprite-container {
+    height: 120px;
+    width: 60px;
+    background-color: white;
+    margin-right: 20px;
+}
+
+.home__userCard--userSprite {
+    background-size: cover;
+}
+
+.home__userCard--textbox {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    position: relative;
+    bottom: 130px;
+    margin-left: 100px;
+}
+
+.home__userCard--textbox p {
+    margin: 7px 0; 
+    color: black;
+    font-size: 20px;
 }

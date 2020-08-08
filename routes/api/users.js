@@ -33,9 +33,15 @@ const password =
     .withMessage('Please provide a password');
 
 // --- ROUTES ---
-// Populates all users - TODO ***
+// Populates current User with TokenId 
 router.get(
     '/',
+    // requireAuth,
+    // asyncHandler(async (req, res) => {
+    //     const { token } = req.body;
+    //     const user = await UserRepository.findByTokenId(token.id);
+
+    // })
 );
 
 // Submits Sign Up Form
@@ -60,10 +66,9 @@ router.post(
 // Populates a single user - TODO (add middleware) ***
 router.get(
     '/:id(\\d+)',
-    requireAuth,
     asyncHandler(async (req, res) => {
         const userId = parseInt(req.params.id, 10);
-        const user = User.findOne({
+        const user = await User.findOne({
             where: {
                 id: userId
             }

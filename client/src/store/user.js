@@ -1,17 +1,15 @@
 import { baseUrl } from '../config';
-import { setToken } from '../store/authentication';
+import { setToken, setUser } from '../store/authentication';
 import {
-    START_USER_ADD,
     ADD_USER,
-    ADD_USER_SUCCESS,
-    ADD_USER_FAILURE,
+    // ADD_USER_SUCCESS,
+    // ADD_USER_FAILURE,
     TOKEN_KEY,
 } from '../constants';
 
 const addUser = (user) => ({ type: ADD_USER, user });
 
 export const createUser = () => async (dispatch, getState) => {
-    dispatch({ type: START_USER_ADD });
     const form = getState().form;
     const user = {
         userName: form.user.values.userName,
@@ -34,37 +32,20 @@ export const createUser = () => async (dispatch, getState) => {
         const { token } = res;
         window.localStorage.setItem(TOKEN_KEY, token);
         dispatch(setToken(token));
-        dispatch({ type: ADD_USER_SUCCESS });
+        dispatch(setUser(user));
     } else {
-        dispatch({ type: ADD_USER_FAILURE })
+        console.error('Bad Response ', response.status);
     }
-} 
+}
 
-export default function userReducer(state = { 
-    users: {}, 
-    addingUser: false
-}, action) {
+
+export default function userReducer(state = {}, action) {
     switch (action.type) {
-        case START_USER_ADD: {
-            return {
-                ...state,
-                addingUser: true,
-            }
-        }
         case ADD_USER: {
-            return {
-                addingUser: false,
-                users: [
-                    state.users,
-                    action.user,
-                ]
-            }
+            const newState = { ...state };
+            newState.user = action.user;
+            return newState;
         }
-        // case ADD_USER_SUCCESS:
-        //     return Object.assign({}, state, {
-        //         users: 
-        //     })
-        default:
-            return state;
+        default:  return state;
     }
 }

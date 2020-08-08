@@ -56,7 +56,7 @@ export default class LoginForm extends Component {
                             <p>Don't Have an Account Yet?</p>
                           </div>
                           <div className="container  loginScreen_mainContainer--signUp-link">
-                            <Link to="/signup">
+                            <Link to="/signup" >
                                 <button 
                                   type="button"
                                   className="button is-danger is-fullwidth"

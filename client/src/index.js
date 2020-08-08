@@ -1,15 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import './index.css';
-import App from './App';
 import { Provider } from 'react-redux';
-import configureStore from './store/configureStore';
 
-const token = window.localStorage.getItem('riverRunners/authentication/token')
+import './index.css';
+
+
+import App from './App';
+import configureStore from './store/configureStore';
+import { loadUser } from './store/authentication'
+import { TOKEN_KEY } from './constants'
+
+const token = window.localStorage.getItem(TOKEN_KEY)
+// const user = async () => await loadUser();
 
 const initialState = {
-  authentication: { token }
+  authentication: { token },
+  // user: { user }
 }; 
 
 const store = configureStore(initialState);
