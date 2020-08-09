@@ -26,21 +26,25 @@ router.get(
 router.post(
     '/',
     asyncHandler(async (req, res) => {
-        const { 
-            userId,
-            craftName, 
-            type, 
-            maxOccupancy, 
-            spriteId 
-        } = req.body;
-        const craft = await Craft.create({ 
+        const { craft } = req.body;
+        const userId = craft.userId;
+        const craftName = craft.craftName;
+        const type = craft.type;
+        const maxOccupancy = craft.maxOccupancy;
+        // -- TODO --- implement Sprite Controls
+        const spriteId = 1;
+        const createdAt = new Date();
+        const updatedAt = new Date();
+        const newCraft = await Craft.create({ 
             userId, 
             craftName, 
             type, 
             maxOccupancy, 
-            spriteId 
+            spriteId,
+            createdAt,
+            updatedAt,
         });
-        res.json({ craft });
+        res.json({ newCraft });
     })
 );
 

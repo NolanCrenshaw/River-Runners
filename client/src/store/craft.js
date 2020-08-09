@@ -1,28 +1,26 @@
 import { baseUrl } from '../config';
-import { ADD_CRAFT, TOKEN_KEY } from '../constants';
+import { ADD_CRAFT, TOKEN_KEY, USER_KEY } from '../constants';
 
 const addCraft = (craft) => ({ type: ADD_CRAFT, craft });
 
 export const createCraft = () => async (dispatch, getState) => {
+    const token = window.localStorage.getItem(TOKEN_KEY);
+    const currentUserId = window.localStorage.getItem(USER_KEY);
     const form = getState().form;
     const craft = {
-        userId: form.craft.values.userId,
+        userId: currentUserId,
         craftName: form.craft.values.craftName,
         type: form.craft.values.type,
         maxOccupancy: form.craft.values.maxOccupancy,
         spriteId: form.craft.values.spriteId,
     };
-    console.log("craft Obj ", craft)
     const response = await fetch(`${baseUrl}/crafts`, {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(craft)
+        body: JSON.stringify({ craft, token })
     });
-    console.log("Createcraft ", response)
     dispatch(addCraft(craft));
-    if (response.ok) {
-        console.log("craft added");
-    } else {
+    if (!response.ok) {
         console.error("Bad response", response.status);
     }
 }
@@ -31,7 +29,10 @@ export default function reducer(state = {}, action) {
     switch (action.type) {
         case ADD_CRAFT: {
             const newState = { ...state };
-            newState.craft = action.craft;
+            newState.crafts = [
+                ...newState.crafts,
+                action.craft
+            ]
             return newState;
         }
         default: return state;

@@ -11,44 +11,58 @@ const { Vehicle } = require("../../db/models");
 const router = express.Router();
 
 // Middleware
-router.use(requireAuth);
+// router.use(requireAuth);
 
 // --- ROUTES ---
 //
 router.get(
-  "/"
-  // asyncHandler(async (req, res) => {
-  //     const vehicle =
-  // })
+  "/",
+  asyncHandler(async (req, res) => {
+    console.log("GOT TO VEHICLE GET ROUTE");
+  })
 );
 
 // Create new vehicle with associated user
 router.post(
   "/",
+  requireAuth,
   asyncHandler(async (req, res) => {
-    // const { vehicle } = req.body
-    // console.log("Route ", vehicle)
-    const {
-      // userId,
-      vehicleName,
-      type,
-      maxOccupancy,
-      // spriteId
-    } = req.body;
+    const { vehicle } = req.body;
+    const userId = vehicle.userId;
+    const vehicleName = vehicle.vehicleName;
+    const type = vehicle.type;
+    const maxOccupancy = vehicle.maxOccupancy;
+    // -- TODO --- implement Sprite Controls
+    const spriteId = 1;
     const createdAt = new Date();
     const updatedAt = new Date();
     const newVehicle = await Vehicle.create({
-      userId: 21,
+      userId,
       vehicleName,
       type,
       maxOccupancy,
-      // spriteId,
+      spriteId,
       createdAt,
       updatedAt,
     });
     res.json({ newVehicle });
   })
 );
+
+// Get a User's vehicles
+router.get(
+  '/user:id(\\d+)',
+  asyncHandler(async (req, res) => {
+    const userId = req.params.id;
+    const vehicles = await Vehicle.findAll({
+      where: {
+        userId: userId
+      }
+    })
+    console.log(vehicles)
+    res.json({ vehicles });
+  })
+)
 
 // Destroy a single vehicle
 router.delete(

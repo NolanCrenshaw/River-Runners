@@ -1,16 +1,16 @@
-.createcraftForm {
+.createvVhicleForm {
     display: flex;
     justify-items: center;
 }
 
-.createcraftForm__mainContainer {
+.createVehicleForm__mainContainer {
     display: flex;
     flex-direction: column;
     justify-items: center;
     margin: 10px;
 }
 
-.createcraftForm__mainContainer--form {
+.createVehicleForm__mainContainer--form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -18,32 +18,32 @@
     margin: 15px;
 }
 
-.createcraftForm__mainContainer--form div {
+.createVehicleForm__mainContainer--form div {
     margin: 5px;
     width: 100%;
 }
 
-.createcraftForm__mainContainer--form input {
+.createVehicleForm__mainContainer--form input {
     margin: 5px;
     width: 100%;
 }
 
-.createcraftForm__mainContainer--form select {
+.createVehicleForm__mainContainer--form select {
     margin: 5px;
     width: 100%;
 }
 
-.createcraftForm__mainContainer--form button {
+.createVehicleForm__mainContainer--form button {
     margin: 5px;
     width: 100%;
 }
 
-.craft__radiobuttons {
+.vehicle__radiobuttons {
     display: flex;
     justify-items: center;
 }
 
-.craftSprite__container {
+.vehicleSprite__container {
     height: 70px;
     width: 350px;
     margin: 5px;
@@ -51,7 +51,7 @@
     justify-content: space-around;
 }
 
-.craftSprite__container img {
+.vehicleSprite__container img {
     height: 70px;
     width: 90px;
 }

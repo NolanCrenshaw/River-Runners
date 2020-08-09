@@ -23,8 +23,8 @@ const getUserToken = (user) => {
 // - Function to restore user session by JWT tokenId
 const restoreUser = (req, res, next) => {
   const { token } = req.body;
+  console.log("GOT TO RESTORE USER")
   if (!token) {
-    console.log("No Token at Restore User");
     return next({ status: 401, message: "No Token" });
   }
   return jwt.verify(token, secret, null, async (err, jwtPayload) => {
@@ -32,15 +32,16 @@ const restoreUser = (req, res, next) => {
       err.status = 403;
       return next(err);
     }
-    const { tokenId } = jwtPayload.data.tokenId;
+    const { tokenId } = jwtPayload.data;
     try {
       req.user = await UserRepository.findByTokenId(tokenId);
     } catch (e) {
       return next(e);
     }
-    if (!req.user.isValid()) {
-      return next({ status: 404, message: "Session Not Found" });
-    }
+    // -- THIS ERROR CATCH IS NOT WORKING
+    // if (!req.user.isValid()) {
+    //   return next({ status: 404, message: "Session Not Found" });
+    // }
     return next();
   });
 };

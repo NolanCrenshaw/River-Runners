@@ -6,6 +6,7 @@ import { baseUrl } from  '../../config';
 import defaultLogo from '../../images/default-profile-pic.jpg';
 
 import { loadUser, setUser } from '../../store/authentication';
+import { getVehicles } from '../../store/vehicle';
 import Navbar from '../Navbar';
 
 import CreateTripFormContainer from '../../containers/CreateTripFormContainer';
@@ -52,7 +53,7 @@ const VehicleModal = ({ handleClose, show }) => {
                 </div>
                 <div className="modal-content">
                     <div className="modal-content__subContainer">
-                        <CreateVehicleFormContainer />
+                        <CreateVehicleFormContainer handleClose={handleClose}/>
                     </div>
                 </div>
             </div>
@@ -113,6 +114,7 @@ const Home = props => {
 
     useEffect(() => {
         props.loadUser();
+        props.getVehicles();
     }, [])
 
     return (
@@ -139,7 +141,6 @@ const Home = props => {
                                     <TripModal show={tripShow} handleClose={hideTripModal} />
                                     <VehicleModal show={vehicleShow} handleClose={hideVehicleModal} />
                                     <CraftModal show={craftShow} handleClose={hideCraftModal} />
-
                                 </div>
                             </div>
                         </div>
@@ -158,6 +159,17 @@ const Home = props => {
                             onClick={showCraftModal}
                         >Add a Boat</button>
                     </div>
+                    <div>
+                        <ul>
+                            {/* { props.vehicles.map(vehicle => {
+                                return (
+                                    <>
+                                        <li>{vehicle.vehicleName}</li>
+                                    </>
+                                )
+                            }) } */}
+                        </ul>
+                    </div>
 
                 <div className="home__mainContainer">
 
@@ -171,12 +183,14 @@ const Home = props => {
 const mapStateToProps = state => {
     return {
         user: state.authentication.user,
-        token: state.authentication.token
+        token: state.authentication.token,
+        vehicles: state.vehicle.userVehicles
     }
 };
 const mapDispatchToProps = dispatch => {
     return {
         loadUser: async () => dispatch(loadUser()),
+        getVehicles: async () => dispatch(getVehicles())
     }
 };
 

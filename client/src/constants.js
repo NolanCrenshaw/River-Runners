@@ -13,6 +13,7 @@ export const REMOVE_TOKEN = 'riverRunners/authentication/REMOVE_TOKEN';
 
 export const ADD_VEHICLE = 'riverRunners/vehicles/ADD_VEHICLE';
 export const REMOVE_VEHICLE = 'riverRunners/vehicles/REMOVE_VEHICLE';
+export const SET_VEHICLES = 'riverRunners/vehicles/SET_VEHICLES';
 
 export const ADD_CRAFT = 'riverRunners/crafts/ADD_CRAFT';
 export const REMOVE_CRAFT = 'riverRunners/craft/REMOVE_CRAFT';
