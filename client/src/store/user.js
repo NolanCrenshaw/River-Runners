@@ -5,13 +5,14 @@ import {
     // ADD_USER_SUCCESS,
     // ADD_USER_FAILURE,
     TOKEN_KEY,
+    USER_KEY,
 } from '../constants';
 
 const addUser = (user) => ({ type: ADD_USER, user });
 
 export const createUser = () => async (dispatch, getState) => {
     const form = getState().form;
-    const user = {
+    const newUser = {
         userName: form.user.values.userName,
         email: form.user.values.email,
         password: form.user.values.password,
@@ -24,13 +25,14 @@ export const createUser = () => async (dispatch, getState) => {
     const response = await fetch(`${baseUrl}/users`, {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
+        body: JSON.stringify(newUser)
     });
-    dispatch(addUser(user));
     if (response.ok) {
         const res = await response.json();
-        const { token } = res;
+        const { token, user } = res;
         window.localStorage.setItem(TOKEN_KEY, token);
+        window.localStorage.setItem(USER_KEY, user.id)
+        dispatch(addUser(user));
         dispatch(setToken(token));
         dispatch(setUser(user));
     } else {

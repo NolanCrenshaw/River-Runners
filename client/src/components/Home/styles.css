@@ -1,5 +1,7 @@
 .home {
     height: fit-contents;
+    display: flex;
+
 }
 
 .home__userContainer {
@@ -8,6 +10,8 @@
     background-color: #ade8f4;
     display: flex;
     flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: center; */
 }
 
 .home__userCard {
@@ -70,4 +74,32 @@
     margin: 7px 0; 
     color: black;
     font-size: 20px;
+}
+
+.modal-content__subContainer {
+    height: 500px;
+    width: 400px;
+    background-color: #0096c7;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+}
+
+.home__userContainer--subContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 480px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+
+
+.home__userContainer--addButton {
+    height: 35px;
+    width: 380px;
+    margin: 7px;
 }

@@ -48,15 +48,4 @@ router.put(
     })
 )
 
-// Remove User Auth Token
-router.delete(
-    '/',
-    requireAuth,
-    asyncHandler(async (req, res) => {
-        req.user.tokenId = null;
-        await req.user.save();
-        res.json({ message: 'success' });
-    })
-);
-
 module.exports = router;

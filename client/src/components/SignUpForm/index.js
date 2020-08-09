@@ -91,7 +91,8 @@ const SignUpForm = ({
                         </div>
                         <p>What Is Your Skill Level?</p>
                         <div className="select is-primary is-rounded signUpScreen__mainContainer--form-select">
-                            <select 
+                            <Field 
+                                component="select"
                                 name="skillSelect" 
                                 {...skillLevel}
                             >
@@ -99,7 +100,7 @@ const SignUpForm = ({
                                 <option value={3}>Class 3</option>
                                 <option value={4}>Class 4</option>
                                 <option value={5}>Class 5</option>
-                            </select>
+                            </Field>
                         </div>
                         <p>Tell Us About Your Boating</p>
                         <div className="signUpScreen__mainContainer--form-textContainer">

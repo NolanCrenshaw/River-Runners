@@ -22,8 +22,9 @@ const getUserToken = (user) => {
 
 // - Function to restore user session by JWT tokenId
 const restoreUser = (req, res, next) => {
-    const { token } = req;
+    const { token } = req.body;
     if (!token) {
+        console.log("No Token at Restore User");
         return next({ status: 401, message: "No Token" });
     }
     return jwt.verify(token, secret, null, async (err, jwtPayload) => {

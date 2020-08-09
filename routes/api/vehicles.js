@@ -11,7 +11,7 @@ const { Vehicle } = require('../../db/models');
 const router = express.Router();
 
 // Middleware
-router.use(requireAuth);
+// router.use(requireAuth); -- NEED TO SET JTI in utils correctly
 
 // --- ROUTES ---
 // 
@@ -26,25 +26,27 @@ router.get(
 router.post(
     '/',
     asyncHandler(async (req, res) => {
-        const { 
-            userId,
+        // const { vehicle } = req.body
+        // console.log("Route ", vehicle)
+        const {
+            // userId,
             vehicleName, 
             type, 
             maxOccupancy, 
-            spriteId 
+            // spriteId 
         } = req.body;
         const createdAt = new Date();
         const updatedAt = new Date();
-        const vehicle = await Vehicle.create({ 
-            userId, 
+        const newVehicle = await Vehicle.create({ 
+            userId: 21, 
             vehicleName, 
             type, 
             maxOccupancy, 
-            spriteId,
+            // spriteId,
             createdAt,
             updatedAt 
         });
-        res.json({ vehicle });
+        res.json({ newVehicle });
     })
 );
 

@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 import './styles.css';
+import { logout } from '../../store/authentication';
 
-const Navbar = () => {
+const Navbar = props => {
 
     return (
         <>
@@ -46,7 +47,7 @@ const Navbar = () => {
                         <div className="navbar__endContainer">
                             <button 
                                 className="button is-danger"
-                                // onClick={}
+                                onClick={props.logout}
                             >Log Out</button>
                         </div>
                     </div>
@@ -57,6 +58,10 @@ const Navbar = () => {
 }
 
 const mapStateToProps = state => ({});
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => {
+    return {
+        logout: async () => dispatch(logout())
+    }
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

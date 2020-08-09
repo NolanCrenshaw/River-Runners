@@ -1,0 +1,57 @@
+.createCraftForm {
+    display: flex;
+    justify-items: center;
+}
+
+.createCraftForm__mainContainer {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    margin: 10px;
+}
+
+.createCraftForm__mainContainer--form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+}
+
+.createCraftForm__mainContainer--form div {
+    margin: 5px;
+    width: 100%;
+}
+
+.createCraftForm__mainContainer--form input {
+    margin: 5px;
+    width: 100%;
+}
+
+.createCraftForm__mainContainer--form select {
+    margin: 5px;
+    width: 100%;
+}
+
+.createCraftForm__mainContainer--form button {
+    margin: 5px;
+    width: 100%;
+}
+
+.craft__radiobuttons {
+    display: flex;
+    justify-items: center;
+}
+
+.craftSprite__container {
+    height: 70px;
+    width: 350px;
+    margin: 5px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.craftSprite__container img {
+    height: 70px;
+    width: 90px;
+}

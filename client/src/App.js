@@ -6,8 +6,7 @@ import LoginFormContainer from './containers/LoginFormContainer';
 import SignUpFormContainer from './containers/SignUpFormContainer';
 import Home from './components/Home';
 import Footer from './components/Footer';
-import { loadToken, loadUser } from './store/authentication';
-import { userInfo } from 'os';
+import { loadToken } from './store/authentication';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -22,7 +21,6 @@ class App extends React.Component {
         super(props);
         this.state = {
             loaded: false,
-            user: ''
         };
     }
     
@@ -66,7 +64,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         loadToken: () => dispatch(loadToken()),
-        loadUser: () => dispatch(loadUser()),
     };
 }
 

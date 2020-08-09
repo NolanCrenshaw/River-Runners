@@ -5,11 +5,13 @@ import {
     REMOVE_TOKEN,
     USER_KEY,
     SET_USER, 
+    REMOVE_USER,
 } from '../constants'
 
 export const setToken = token => ({ type: SET_TOKEN, token });
 export const removeToken = () => ({ type: REMOVE_TOKEN });
 export const setUser = user => ({ type: SET_USER, user });
+export const removeUser = () => ({ type: REMOVE_USER });
 
 export const loadToken = () => async dispatch => {
     const token = window.localStorage.getItem(TOKEN_KEY);
@@ -48,17 +50,12 @@ export const tryLogin = (email, password) => async dispatch => {
 };
 
 export const logout = () => async (dispatch, getState) => {
+    console.log("LOGOUT REACHED")
     const { authentication: { token } } = getState();
-    const response = await fetch(`${baseUrl}/session`, {
-        method: 'DELETE',
-        headers: { Authorization: `Bearer ${token}` },
-    });
-    if (response.ok) {
-        window.localStorage.removeItem(TOKEN_KEY);
-        dispatch(removeToken());
-    } else {
-        console.error("Bad Response");
-    }
+    window.localStorage.removeItem(TOKEN_KEY);
+    window.localStorage.removeItem(USER_KEY);
+    dispatch(removeToken());
+    dispatch(removeUser());
 };
 
 const initialUserObj = {
@@ -88,8 +85,13 @@ export default function reducer(state = {}, action) {
             return newState;
         }
         case SET_USER: {
-            const newState = { ...state }
+            const newState = { ...state };
             newState.user = action.user;
+            return newState;
+        }
+        case REMOVE_USER: {
+            const newState = { ...state };
+            delete newState.user;
             return newState;
         }
         default: return state;

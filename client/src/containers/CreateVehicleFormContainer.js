@@ -1,8 +1,11 @@
-import React from 'react';
 import { connect } from 'react-redux';
+import CreateVehicleForm from '../components/CreateVehicleForm';
+import { createVehicle } from '../store/vehicle';
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => {};
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+    createVehicle: () => dispatch(createVehicle())
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)();
+export default connect(mapStateToProps, mapDispatchToProps)(CreateVehicleForm);

@@ -6,15 +6,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 50px;
 }
 
 .navbar__logo {
     background-image: url('../../images/riverRunnersLogo.png');
-    background-size: contain;
+    background-position: center;
+    background-size: cover;
     background-repeat: no-repeat;
-    height: 80px;
-    width: 100px;
+    height: 50px;
+    width: 50px;
+    border-radius: 180px;
+    margin: 5px 0;
 }
+
 
 .navbar__logo--text {
     font-family: 'Permanent Marker', cursive;
@@ -22,6 +27,8 @@
     color: #03045e;
     font-size: 36px;
     font-weight: bold;
+    position: relative;
+    left: 20px;
 }
 
 .navbar__endContainer {
