@@ -78,9 +78,6 @@ export default function reducer(state = {}, action) {
     case SET_TOKEN: {
       const newState = { ...state };
       newState.token = action.token;
-      // if (!newState.user) {
-      //     newState.user = initialUserObj;
-      // }
       return newState;
     }
     case REMOVE_TOKEN: {

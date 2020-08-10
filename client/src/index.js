@@ -15,8 +15,8 @@ const token = window.localStorage.getItem(TOKEN_KEY);
 // const user = async () => await loadUser();
 
 const initialState = {
-  authentication: { token },
-  vehicle: { initialVehicleObj },
+  authentication: { token, user: initialUserObj },
+  vehicle: { vehicles: initialVehicleObj },
   user: { initialUserObj },
 };
 

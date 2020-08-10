@@ -108,9 +108,9 @@ const Home = (props) => {
     setCraftShow(false);
   };
 
+
   useEffect(() => {
     props.loadUser();
-    props.getVehicles();
   }, []);
 
   return (
@@ -168,13 +168,15 @@ const Home = (props) => {
           </div>
           <div>
             <ul>
-              {props.vehicles.map((vehicle) => {
-                return (
-                  <>
-                    <li>{vehicle.vehicleName}</li>
-                  </>
-                );
-              })}
+              {/* {
+                props.vehicles.map((vehicle) => {
+                  return (
+                    <>
+                      <li>{vehicle.vehicleName}</li>
+                    </>
+                  );
+                })
+              } */}
             </ul>
           </div>
 
@@ -189,7 +191,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.authentication.user,
     token: state.authentication.token,
-    vehicles: state.vehicle.userVehicles,
+    vehicles: state.vehicle.vehicles,
   };
 };
 const mapDispatchToProps = (dispatch) => {
