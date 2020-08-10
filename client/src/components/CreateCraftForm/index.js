@@ -5,7 +5,9 @@ import './styles.css';
 import { Field, reduxForm } from 'redux-form';
 import { USER_KEY } from '../../constants';
 
-import car from '../../images/carSprite.png';
+import kayak from '../../images/playBoatSprite.png';
+import canoe from '../../images/canoeSprite.png';
+import raft from '../../images/raftSprite.png';
 
 const currentUserId = window.localStorage.getItem(USER_KEY)
 
@@ -46,19 +48,20 @@ const CreateCraftForm = ({
                                 {...CraftName}
                             />
                         </div>
-                        <p>Select your craft type</p>
+                        <p>Select your boat type</p>
                         <div>
                             <Field
                                 component="select"
                                 name="type"
                                 {...type}
                             >
-                                 <option value="Car">Car</option>
-                                 <option value="Truck">Truck</option>
-                                 <option value="SUV">SUV</option>
+                                 <option value="Car">Kayak</option>
+                                 <option value="Truck">Canoe</option>
+                                 <option value="SUV">Raft</option>
+                                 <option value="SUV">Shredder</option>
                             </Field>
                         </div>
-                        <p>How many people does your craft carry?</p>
+                        <p>How many people does your boat carry?</p>
                         <div>
                             <Field
                                 component="input"
@@ -67,11 +70,11 @@ const CreateCraftForm = ({
                                 {...maxOccupancy}
                             />
                         </div>
-                        <p>Select a sprite for your craft</p>
+                        <p>Select a sprite for your boat</p>
                         <div className="craftSprite__container">
-                            <img className="craftSprite__one" src={car} />
-                            <img className="craftSprite__two" src={car} />
-                            <img className="craftSprite__three" src={car} />
+                            <img className="craftSprite__one" src={kayak} />
+                            <img className="craftSprite__two" src={canoe} />
+                            <img className="craftSprite__three" src={raft} />
                         </div>
                         <div className="control craft__radiobuttons">
                             <Field

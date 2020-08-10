@@ -6,6 +6,8 @@ import { Field, reduxForm } from 'redux-form';
 import { USER_KEY } from '../../constants';
 
 import car from '../../images/carSprite.png';
+import truck from '../../images/pickupSprite.png';
+import suv from '../../images/suvSprite.png';
 
 const currentUserId = window.localStorage.getItem(USER_KEY)
 
@@ -70,8 +72,8 @@ const CreateVehicleForm = ({
                         <p>Select a sprite for your vehicle</p>
                         <div className="vehicleSprite__container">
                             <img className="vehicleSprite__one" src={car} />
-                            <img className="vehicleSprite__two" src={car} />
-                            <img className="vehicleSprite__three" src={car} />
+                            <img className="vehicleSprite__two" src={truck} />
+                            <img className="vehicleSprite__three" src={suv} />
                         </div>
                         <div className="control vehicle__radiobuttons">
                             <Field
